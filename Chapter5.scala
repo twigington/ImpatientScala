@@ -1,5 +1,3 @@
-import beans.BeanProperty
-
 val header = "=" * 10 + "Chapter 5: Exercise %1$02d" + "=" * 10
 
 /*===================================================================*/
