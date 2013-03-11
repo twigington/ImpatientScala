@@ -104,22 +104,120 @@ println(header.format(5))
 /* 5: [Make a class Student with read-write JavaBeans properties name (of type String) and id (of type Long).
   What methods are generated? (Use javap to check.)
   Can you call the JavaBeans getters and setters in Scala? Should you?] */
-class Student(@BeanProperty var name : String, @BeanProperty var id : Long) {
+import chapter5.Student
 
+val tom = new Student("Tom", 1)
+println("getId=" + tom.getId + " getName=" + tom.getName)
+println("id=" + tom.id + " name=" + tom.name)
+println(tom)
+/* results of compilation
+class Student(@scala.beans.BeanProperty val name : scala.Predef.String, @scala.beans.BeanProperty val id : scala.Long) extends java.lang.Object {
+  def getName() : scala.Predef.String = { /* compiled code */ }
+  def setName(x$1 : scala.Predef.String) : scala.Unit = { /* compiled code */ }
+  def getId() : scala.Long = { /* compiled code */ }
+  def setId(x$1 : scala.Long) : scala.Unit = { /* compiled code */ }
 }
+ */
+// You can access the generated getters and setters from Scala. You can also use the scala-esque methods, so not much reason to.
 
 /*===================================================================*/
 println(header.format(6))
+/* 6: [In the Person class of Section 5.1, “Simple Classes and Parameterless Methods Why No Multiple Inheritance?,”
+on page 49, provide a primary constructor that turns negative ages to 0.] */
+class Person(var age: Int) {
+  if (age < 0) age = 0
+}
+
+println("Age " + new Person(-10).age)
+println("Age " + new Person(12).age)
 
 /*===================================================================*/
 println(header.format(7))
+/* 7: [Write a class Person with a primary constructor that accepts a string containing a first name, a space,
+  and a last name, such as new Person("Fred Smith"). Supply read-only properties firstName and lastName.
+  Should the primary constructor parameter be a var, a val, or a plain parameter? Why?] */
+import chapter5.PersonE7
+
+val fake = new PersonE7("Fake Name")
+println("FN=" + fake.firstName + ", LN=" + fake.lastName)
+
+// I made the primary constructor parameter a plain parameter
+// because I don't want to store the full name to keep it DRY.
 
 /*===================================================================*/
 println(header.format(8))
+/* 8: [Make a class Car with read-only properties for manufacturer, model name,
+and model year, and a read-write property for the license plate. Supply four
+constructors. All require the manufacturer and model name. Optionally,
+model year and license plate can also be specified in the constructor. If not,
+the model year is set to -1 and the license plate to the empty string. Which
+constructor are you choosing as the primary constructor? Why?] */
+import chapter5.Car
+
+val car1 = new Car("Ford", "Mustang", 1979, "MO12345")
+println("1 Make:" + car1.manufacturer + ", Model:" + car1.modelName + ", Year:" + car1.modelYear + ", Lic#:" + car1.licensePlate)
+
+val car2 = new Car("Toyota", "Prius", "MOABCD")
+println("2 Make:" + car2.manufacturer + ", Model:" + car2.modelName + ", Year:" + car2.modelYear + ", Lic#:" + car2.licensePlate)
+
+val car3 = new Car("Chevy", "Avalanche")
+println("3 Make:" + car3.manufacturer + ", Model:" + car3.modelName + ", Year:" + car3.modelYear + ", Lic#:" + car3.licensePlate)
+
+val car4 = new Car("Dodge", "Charger", 1990)
+println("4 Make:" + car4.manufacturer + ", Model:" + car4.modelName + ", Year:" + car4.modelYear + ", Lic#:" + car4.licensePlate)
+
+// I made the default constructor the broadest, the one with all parameters, and used default values on
+// the two optional parameters. I did this because this covers 3 out of 4 constructors. I only need to
+// create the 4th for when the model year is not provided, but license plate number is.
 
 /*===================================================================*/
 println(header.format(9))
+/* 9: [Re-implement the class of the preceding exercise in Java, C#, or C++ (your choice).
+  How much shorter is the Scala class?] */
+import chapter5.JavaCar
+
+val jcar1 = new JavaCar("Ford", "Mustang", 1979, "MO12345")
+println("1 Make:" + jcar1.getManufacturer + ", Model:" + jcar1.getModelName + ", Year:" + jcar1.getModelYear + ", Lic#:" + jcar1.getLicensePlate)
+
+val jcar2 = new JavaCar("Toyota", "Prius", "MOABCD")
+println("2 Make:" + jcar2.getManufacturer + ", Model:" + jcar2.getModelName + ", Year:" + jcar2.getModelYear + ", Lic#:" + jcar2.getLicensePlate)
+
+val jcar3 = new JavaCar("Chevy", "Avalanche")
+println("3 Make:" + jcar3.getManufacturer + ", Model:" + jcar3.getModelName + ", Year:" + jcar3.getModelYear + ", Lic#:" + jcar3.getLicensePlate)
+
+val jcar4 = new JavaCar("Dodge", "Charger", 1990)
+println("4 Make:" + jcar4.getManufacturer + ", Model:" + jcar4.getModelName + ", Year:" + jcar4.getModelYear + ", Lic#:" + jcar4.getLicensePlate)
+
+// 5 lines of scala 41 lines of java
 
 /*===================================================================*/
 println(header.format(10))
+/* 10: [Consider the class
+class Employee(val name: String, var salary: Double) {
+  def this() { this("John Q. Public", 0.0) }
+}
+Rewrite it to use explicit fields and a default primary constructor. Which form
+do you prefer? Why?] */
 
+class Employee {
+  private[this] var _name: String = "John Q. Public"
+  var salary: Double = 0.0
+
+  def this(name: String, salary: Double) {
+    this
+    this._name = name
+    this.salary = salary
+  }
+
+  def name = _name
+}
+
+// with explicit fields and default primary constructor you have to make "name" a var instead of a val and hide the
+// fact it is a var by restricting declaring it private (or event tighter with private[this]) and only providing a getter.
+// it is also more verbose. So I'd prefer the first, but honestly what I prefer using default values like...
+class Employee2(val name: String = "John Q. Public", var salary: Double = 0.0) {}
+
+val john = new Employee2()
+val steve = new Employee2("Steve McQueen", 100)
+steve.salary = 200 // give steve a raise!
+println(steve.name + " makes " + steve.salary)
