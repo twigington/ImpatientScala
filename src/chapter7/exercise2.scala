@@ -1,4 +1,4 @@
-package chapter7.com
+package chapter7
 
 class exercise2 {
 
