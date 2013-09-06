@@ -14,6 +14,7 @@ val a1 = new Array[Int](num)
 for (r <- 0 until a1.length) { a1(r) = Random.nextInt(100) }
 println("Assigning each: " + a1.mkString("<", ",", ">"))
 
+// the immutable scala way!
 val a2 = for (r <- 0 until num) yield Random.nextInt(100)
 println("Using yield: " + a2.mkString("<", ",", ">"))
 
