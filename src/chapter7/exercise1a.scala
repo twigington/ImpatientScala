@@ -8,7 +8,7 @@
 /* I am not sure, what the exercise is asking. Is it talking about Top-of-File Notation or Nested? */
 
 // I think Top-of-File, but here is an example of what Nested syntax answer might be.
-// See a-file and b-file for Top-of-File Notation answer.
+// See b-file and c-file for Top-of-File Notation answer.
 
 package com.babelfeesh {
   class Coconut
