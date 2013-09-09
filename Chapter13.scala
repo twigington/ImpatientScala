@@ -1,3 +1,5 @@
+import scala.collection._
+
 // Chapter 13
 
 // Exercise 1
@@ -6,19 +8,25 @@
 // 'i' with the set {1,4,7,10}, and so on. Use a mutable map of characters to mutable sets.
 // How can you ensure that the set is sorted?
 def indexes(str: String) = {
-  var charMap = scala.collection.mutable.Map[Char, Set[Int]]
+  var charMap: mutable.Map[Char, mutable.Set[Int]] = mutable.Map()
   for ((letter, idx) <- str.zipWithIndex) {
-    charMap
+    if (charMap.contains(letter)) {
+      charMap(letter) += idx
+    } else {
+      charMap += (letter -> mutable.SortedSet(idx))
+    }
+  }
+  charMap
+}
+
+def printIndexes(str: String) = {
+  println("\"" + str + "\" index breakdown")
+  indexes(str).foreach { case (key, value) =>
+    println("\t'" + key + "' indexes " + value.mkString("[",",","]"))
   }
 }
 
-val str = "Mississippi"
-println(str)
-println(str.reverse)
-println(str.distinct)
-//println(str.distinct.map {letter: Char => letter + "2"})
-import scala.collection._
-var charMap: mutable.Map[Char, mutable.Set[Int]] = mutable.Map()
-for ((letter, idx) <- str.zipWithIndex) {
-  //charMap += (letter, mutable.Set(idx))
-}
+printIndexes("Mississippi")
+printIndexes("Wonderland")
+printIndexes("Oz the Great & Powerful")
+
