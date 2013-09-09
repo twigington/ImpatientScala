@@ -1,5 +1,5 @@
 /*
-  3: Write a package random with functions nextInt(): Int, nextDouble(): Double, and setSeed(seed: Int): Unit.
+  c7e3: Write a package random with functions nextInt(): Int, nextDouble(): Double, and setSeed(seed: Int): Unit.
   To generate random numbers, use the linear congruential generator
       next = previous * a + b mod 2^n
   where a = 1664525, b = 1013904223, and n = 32.
