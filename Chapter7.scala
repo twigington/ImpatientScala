@@ -35,5 +35,29 @@ println(random.nextDouble())
 /*
   5: What is the meaning of private[com] def giveRaise(rate: Double)? Is it useful?
 
-  A: It means anything in the com package would have access to call the function.
+  A: It means anything in the com package would have access to call the function. It allows you to create things that
+  are only-package usable and not overridable with a sub-class
+*/
+
+/*
+  6: Write a program that copies all elements from a Java hash map into a Scala has map. Use imports to rename both classes.
+*/
+new chapter7.Exercise6().run()
+
+/*
+  7: In the preceding exercise, move all imports into the innermost scope possible.
+*/
+new chapter7.Exercise7().run()
+
+/*
+  8: What is the effect of
+      import java._
+      import javax._
+  Is this a good ida?
+*/
+// You could then skip "java.util.Collection". There are package overlaps between the two domains making this a bad idea.
+// For example "lang" is a sub-package of both java and javax, so there is a collision and you'd end up still needing to
+// specify. Also java._ is already included by default and then partially overridden by the scala._ auto-import.
+
+/*
 */
