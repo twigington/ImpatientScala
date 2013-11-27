@@ -68,6 +68,7 @@ new chapter7.Exercise7().run()
   "secret". Otherwise print a greeting to the standard output stream. Do not use any other imports, and do not use
   any qualified names (with dots).
 */
+// see Exercise9
 
 /*
   10: Apart from StringBuilder, what other members of java.lang does the scala package override?
