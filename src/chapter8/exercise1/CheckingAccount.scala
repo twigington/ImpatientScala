@@ -9,6 +9,6 @@ package chapter8.exercise1
     }
  */
 class CheckingAccount(initialBalance: Double) extends BankAccount(initialBalance) {
-  override def deposit(amount: Double) {super.withdraw(1); super.deposit(amount)}
-  override def withdraw(amount: Double) {super.withdraw(1); super.withdraw(amount)}
+  override def deposit(amount: Double) = { super.deposit(amount - 1) }
+  override def withdraw(amount: Double) = { super.withdraw(amount + 1) }
 }
