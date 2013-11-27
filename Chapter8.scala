@@ -1,4 +1,5 @@
 /*
+<<<<<<< HEAD
 1. Extend the following BankAccount class to a CheckingAccount class that charges $1 for every deposit and withdrawal.
     class BankAccount(initialBalance: Double) {
       private var balance = initialBalance
@@ -63,3 +64,17 @@ subclass? Why?
       class Stack[A] protected {protected val elems: List[A]}
 Explain the meanings of the protected keywords. (Hint Review the discussion of private constructors in Chapter 5.)
 */
+=======
+Chapter 8
+*/
+
+/*
+  1: Extend the following BankAccount class to a CheckingAccount class that charges $1
+  for every deposit and withdrawal.
+      class BankAccount(initialBalance: Double) {
+        private var balance = initialBalance
+        def deposit(amount: Double) = { balance += amount; balance }
+        def withdraw(amount: Double) = { balance -= amount; balance }
+      }
+*/
+>>>>>>> 3d0dee486c14f6096f6c57f67671ddf9d3d277d3
