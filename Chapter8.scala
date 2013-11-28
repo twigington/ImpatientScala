@@ -1,3 +1,5 @@
+import chapter8.exercise7.Square
+
 /* Head: This is just here to get around IntilliJ auto-collapsing the first comment of a file. */
 
 /*
@@ -44,6 +46,12 @@ appropriate constructors for the subclasses and override the centerPoint method 
     one that constructs a square with corner (0,0) and a given width, and
     one that constructs a square with a corner(0,0) and a width 0.
 */
+val square1 = new Square()
+assert(square1.x == 0 && square1.y == 0, square1.width = 0)
+val square2 = new Square(2)
+assert(square2.x == 0 && square2.y == 0, square2.width = 2)
+val square3 = new Square(2, new java.awt.Point(3,4))
+assert(square3.x == 3 && square3.y == 4, square3.width = 2)
 
 /*
 8. Compile the Person and SecretAgent classes in Section 8.6 "Overriding Fields", on page 89 and analyze the class
