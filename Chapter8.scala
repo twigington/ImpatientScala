@@ -1,3 +1,5 @@
+/* Head: This is just here to get around IntilliJ auto-collapsing the first comment of a file. */
+
 /*
 1. Extend the following BankAccount class to a CheckingAccount class that charges $1 for every deposit and withdrawal.
     class BankAccount(initialBalance: Double) {
