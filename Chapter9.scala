@@ -2,10 +2,27 @@
 1. Write a Scala code snippet that reverses lines in a file (making the last line the first one, and so on).
  */
 
+def reverseFile(filename: String) = {
+  import scala.io.Source
+  val source = Source.fromFile(filename)
+  val lines = source.getLines.toArray
+  source.close()
+
+  val revLines = lines.reverse
+
+  import java.io.PrintWriter
+  val out = new PrintWriter(filename)
+  for (line <- revLines) out.println(line)
+  out.close()
+}
+
+reverseFile("reversefile.txt")
+
 /*
 2. Write a Scala program that reads a file with tabs, replaces each tab with spaces so that the tab stops are
   n-column boundaries, and writes the result to the same file.
  */
+// Since the assignment specifically says a scala PROGRAM. the answer can be found in chapter9.Tabs2Spaces
 
 /*
 3. Write a Scala code snippet that reads a file and prints all words with more than 12 characters to the console.
