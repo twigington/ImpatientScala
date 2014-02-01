@@ -28,6 +28,7 @@ reverseFile("reversefile.txt")
 3. Write a Scala code snippet that reads a file and prints all words with more than 12 characters to the console.
   Extra credit if you can do this in a single line.
  */
+//scala.io.Source.fromFile("longWords.txt")
 
 /*
 4. Write a Scala program that reads a text file containing only floating-point numbers. Print the sum, average,
